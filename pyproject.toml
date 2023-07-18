@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "django-admin-media"
+version = "1.0.0"
+description = "displays a preview of media files in the Django admin"
+authors = ["lovvskillz <14542790+lovvskillz@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "django_admin_media"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^4.2.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
