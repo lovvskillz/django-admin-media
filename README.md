@@ -1,28 +1,30 @@
 Display a preview of media files in the Django admin
 
-### Poetry
-This project uses [Poetry](https://python-poetry.org/docs/) for dependency management and packaging.
+## Installation
 
-Install Poetry and add Poetry to [Path](https://python-poetry.org/docs/#installation).
+Add to your installed apps:
+```python
+# settings.py
+INSTALLED_APPS = [
+    # ...
+    "media_preview",
+]
+```
 
-**Debian / Ubuntu / Mac**
+Use the class `AdminMediaPreview` in the AdminModels that should have a preview:
 
-`curl -sSL https://install.python-poetry.org | python3 -`
+```python
+from django.contrib import admin
+from media_preview.preview import AdminMediaPreview
 
-**Windows**
 
-open powershell and run: `(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -`
+@admin.register(SomeMediaModel)
+class SomeMediaModelAdmin(AdminMediaPreview, admin.ModelAdmin):
+    ...
+```
 
-## Development
-
-### Dev Setup
-
-Setup basic `.env` for development: `cp .env.template .env`
-
-Install dependencies: `poetry install`
-
-Install the defined pre-commit hooks: `poetry run pre-commit install`
-
-Activate the virtualenv: `poetry shell`
-
-Run the Django dev server: `./manage.py runserver` or `python manage.py runserver`
+## Configuration
+```python
+# settings.py
+MEDIA_PREVIEW_WIDTH = 320 # default width is 320px
+```
